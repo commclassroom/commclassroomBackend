@@ -11,8 +11,6 @@ const databaseConfigurations = {
  * Initializes MongoDB connection using configs and logs status
  */
 const initializeMongoDB = () => {
-  console.log(config.has('database.string'));
-  // console.log(config.get('database.string'))
   mongoose.connect(
     config.get('database.string'),
     databaseConfigurations,
