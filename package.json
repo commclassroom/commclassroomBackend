@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "test": "mocha --recursive --exit"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
