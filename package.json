@@ -4,6 +4,7 @@
   "description": "backend for community classroom tech services.",
   "main": "src/server.js",
   "scripts": {
+    "test":"mocha ./test/* --exit",
     "start:dev": "nodemon src/server.js",
     "start:prod": "node src/server.js"
   },
