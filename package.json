@@ -27,6 +27,7 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.15.4",
     "chai": "^4.3.4",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",

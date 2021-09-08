@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 
 /** initialize services */
-initializeMongoDB();
+// initializeMongoDB();
 
 /** show alive status on server root */
 app.get('/', (req, res) => {
