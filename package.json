@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "test": "jest"
+    "test": "mocha --recursive --exit"
   },
   "repository": {
     "type": "git",
@@ -38,5 +38,11 @@
     "nodemon": "^2.0.12",
     "prettier": "2.3.2",
     "supertest": "^6.1.6"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
