@@ -36,10 +36,10 @@ body:
     attributes:
       label: Desktop (please complete the following information)
       description: |
-        Device - [e.g. iPhone6]
-        OS - [e.g. iOS8.1]
-        Browser [e.g. stock browser, safari]
-        Version [e.g. 22]
+        System - [e.g. Laptop,PC]
+        OS - [e.g. Windows,Linux,MacOS]
+        Browser [e.g. chrome,safari]
+        Version [e.g. 10]
     validations:
       required: false
   - type: textarea
