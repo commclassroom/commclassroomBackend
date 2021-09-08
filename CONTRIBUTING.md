@@ -13,7 +13,7 @@ You can start contributing to commclassroomBackend by following the below guidel
 
 * And then clone using the below command.
 ```
-git clone https://github.com/your_github_username/commclassroomBackend
+git clone https://github.com/your_github_username/commclassroomBackend.git
 ```
 
 ### Starting Development
