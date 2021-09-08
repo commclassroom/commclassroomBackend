@@ -4,7 +4,7 @@
   "description": "backend for community classroom tech services.",
   "main": "src/server.js",
   "scripts": {
-    "tests": "concurrently -s first -k \"node ./server.js\" \"sleep 1 && npm test\"",
+    "tests": "cucumber-js -p default",
     "start:dev": "nodemon src/server.js",
     "start:prod": "node src/server.js"
   },
