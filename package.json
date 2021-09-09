@@ -5,7 +5,8 @@
   "main": "src/server.js",
   "scripts": {
     "start:dev": "nodemon src/server.js",
-    "start:prod": "node src/server.js"
+    "start:prod": "node src/server.js",
+    "tests": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,16 +23,26 @@
     "express": "^5.0.0-alpha.8",
     "http-exception-transformer": "^1.2.3",
     "mongoose": "^6.0.5",
+    "node-fetch": "^3.0.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.15.4",
     "chai": "^4.3.4",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
+    "jest": "^27.1.0",
     "mocha": "^9.1.1",
     "nodemon": "^2.0.12",
-    "prettier": "2.3.2"
+    "prettier": "2.3.2",
+    "supertest": "^6.1.6"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
