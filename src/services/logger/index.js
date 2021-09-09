@@ -6,7 +6,7 @@ const logger = winston.createLogger({
     winston.format.simple(),
     winston.format.colorize(),
     winston.format.prettyPrint(),
-    winston.format.errors({ stack: true })
+    winston.format.errors({ stack: true }),
   ),
 
   transports: [
@@ -20,7 +20,7 @@ const logger = winston.createLogger({
         winston.format.simple(),
         winston.format.json(),
         winston.format.prettyPrint(),
-        winston.format.errors({ stack: true })
+        winston.format.errors({ stack: true }),
       ),
     }),
     new winston.transports.File({
@@ -32,7 +32,7 @@ const logger = winston.createLogger({
         winston.format.simple(),
         winston.format.json(),
         winston.format.prettyPrint(),
-        winston.format.errors({ stack: true })
+        winston.format.errors({ stack: true }),
       ),
     }),
   ],
@@ -42,7 +42,7 @@ if (process.env.node_env !== 'production') {
   logger.add(
     new winston.transports.Console({
       format: winston.format.simple(),
-    })
+    }),
   );
 }
 

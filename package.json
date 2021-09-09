@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "nodemon src/server.js",
     "start:prod": "node src/server.js",
-    "lint": "eslint --fix",
+    "lint": "eslint --fix src/*.js src/**/*.js",
     "tests": "jest"
   },
   "repository": {

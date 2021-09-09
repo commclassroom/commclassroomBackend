@@ -1,7 +1,6 @@
 /** load required packages */
 const {
   InternalServerException,
-  NotFoundException,
 } = require('http-exception-transformer/exceptions');
 
 /** load peer modules and services */
