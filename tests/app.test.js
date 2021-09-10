@@ -1,10 +1,15 @@
+/* global describe, it, expect, afterAll */
 const request = require('supertest');
+const db = require('mongoose');
 const { app } = require('../src/app');
 
 describe('register', () => {
   it('returns status code 201', async () => {
     const response = await request(app).get('/');
-    console.log(response.body);
     expect(response.body.alive).toEqual(true);
+  });
+
+  afterAll(() => {
+    db.connection.close();
   });
 });
