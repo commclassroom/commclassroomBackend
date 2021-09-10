@@ -17,10 +17,6 @@ Run unit tests
 
     npm test
 
-Build everything (outputs will live in `build/`-directory)
-
-    npm run build
-
 Start development server with hot reloading (open `http://127.0.0.1:27017/` and find your way through the directory listing)
 
     npm start
