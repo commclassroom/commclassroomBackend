@@ -35,6 +35,17 @@ class UserController {
       throw new InternalServerException();
     }
   }
+
+  static async updateUserDetails(updatedUserObj) {
+    try {
+      logger.info('[user]: updating user details');
+      const updatedUser = await UserService.updateUser(updatedUserObj);
+
+      return updatedUser;
+    } catch (e) {
+      throw new InternalServerException();
+    }
+  }
 }
 
 module.exports = { UserController };

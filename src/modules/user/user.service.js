@@ -26,6 +26,16 @@ class UserService {
     const newUser = await User.create(newUserObj);
     return newUser;
   }
+
+  static async updateUser(updatedUserObj) {
+    const updatedUser = await User.findByIdAndUpdate(
+      updatedUserObj._id,
+      updatedUserObj,
+      { new: true },
+    );
+
+    return updatedUser;
+  }
 }
 
 module.exports = { UserService };
