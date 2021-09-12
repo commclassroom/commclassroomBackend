@@ -13,6 +13,7 @@ const UserRoutes = require('./modules/user/user.routes');
 /** declare application and load middleware */
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 /** initialize services */
 initializeMongoDB();
