@@ -53,6 +53,7 @@ const courseSchema = new Schema(
       type: [String],
       default: [],
     },
+    playlistId: String,
   },
   {
     timestamps: true,

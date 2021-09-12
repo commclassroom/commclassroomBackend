@@ -1,4 +1,5 @@
 /** load required packages */
+const { NotFoundException } = require('http-exception-transformer/exceptions');
 
 /** load peer modules and services */
 const Course = require('./course.schema');
@@ -18,6 +19,7 @@ class CourseService {
     if (!enrollements) {
       return undefined;
     }
+    // filtering all the enrollements with a rating.
     const enrollementsWithRatings = enrollements.filter(
       (enrollement) => enrollement.rating,
     );
@@ -42,12 +44,26 @@ class CourseService {
   }
 
   /**
+   * Fetch a course by Id
+   * @param {ObjectId} id - ObjectId of the course to get
+   */
+  static async findCourse(id) {
+    const course = await Course.findById(id);
+    if (!course) {
+      // course not found
+      throw new NotFoundException();
+    }
+    return course;
+  }
+
+  /**
    * Create a course.
    * @param {string} title - The title of the course.
    * @param {Array<{name : string}>} instructors - The instuctors of the course.
    * @param {Array<{user: objectId,rating: Number}>} enrollements - The students enrolled in the course.
    * @param {bool} featured - Is the course featured
    * @param {Array<string>} tags - Tags related to the course
+   * @param {string} playlistId - YouTube playlist id
    */
   static async createNewCourse(
     title,
@@ -55,6 +71,7 @@ class CourseService {
     enrollements,
     featured,
     tags,
+    playlistId,
   ) {
     const course = new Course();
     course.title = title;
@@ -63,7 +80,51 @@ class CourseService {
     course.course_rating = this.getAvgRating(course.enrollements);
     course.featured = featured || false;
     course.tags = tags;
+    course.playlistId = playlistId;
     return course.save();
+  }
+
+  /**
+   * Update a course.
+   * @param {ObjectId} id - The id of the course to update
+   * @param {string} title - The title of the course.
+   * @param {Array<{name : string}>} instructors - The instuctors of the course.
+   * @param {Array<{user: objectId,rating: Number}>} enrollements - The students enrolled in the course.
+   * @param {bool} featured - Is the course featured
+   * @param {Array<string>} tags - Tags related to the course
+   * @param {string} playlistId - YouTube playlist id
+   */
+  static async updateCourse(
+    id,
+    title,
+    instructors,
+    enrollements,
+    featured,
+    tags,
+    playlistId,
+  ) {
+    const course = await Course.findById(id);
+    if (!course) {
+      // course not found
+      throw new NotFoundException();
+    }
+    course.title = title;
+    course.instructors = instructors;
+    course.enrollements = enrollements;
+    course.course_rating = this.getAvgRating(course.enrollements);
+    course.featured = featured || false;
+    course.tags = tags;
+    course.playlistId = playlistId;
+    return course.save();
+  }
+
+  /**
+   * Delete a course by Id
+   * @param {ObjectId} id - ObjectId of the course to delete
+   */
+  static async deleteCourse(id) {
+    const course = Course.findByIdAndDelete(id);
+    return course;
   }
 }
 

@@ -1,6 +1,7 @@
 /** load required packages */
 const {
   InternalServerException,
+  BadRequestException,
 } = require('http-exception-transformer/exceptions');
 
 /** load peer modules and services */
@@ -26,19 +27,84 @@ class CourseController {
   }
 
   /**
-   * @param {object} - An object having all required attributes.
+   * @param {object} obj - An object having all required attributes.
    */
   static async createCourse(obj) {
+    logger.info('[course]: create new course');
+    let { title, instructors, enrollements, featured, tags } = obj;
     try {
-      logger.info('[course]: create new course');
-      let { title, instructors, enrollements, featured, tags } = obj;
       const course = await CourseService.createNewCourse(
         title,
         instructors,
         enrollements,
         featured,
         tags,
+        playlistId,
       );
+
+      return course;
+    } catch (e) {
+      logger.error('[course]: ' + e);
+      throw new InternalServerException();
+    }
+  }
+
+  /**
+   * @param {ObjectId} id - ObjectId of the course to update
+   * @param {object} obj - An object having all required attributes.
+   */
+  static async updateCourse(id, obj) {
+    if (!id) {
+      throw new BadRequestException();
+    }
+    logger.info('[course]: Update course no. ' + id);
+    let { title, instructors, enrollements, featured, tags } = obj;
+    try {
+      const course = await CourseService.updateCourse(
+        id,
+        title,
+        instructors,
+        enrollements,
+        featured,
+        tags,
+        playlistId,
+      );
+
+      return course;
+    } catch (e) {
+      logger.error('[course]: ' + e);
+      throw new InternalServerException();
+    }
+  }
+
+  /**
+   * @param {ObjectId} id - ObjectId of the course to get
+   */
+  static async getCourse(id) {
+    if (!id) {
+      throw new BadRequestException();
+    }
+    logger.info('[course]: Get course no. ' + id);
+    try {
+      const course = await CourseService.findCourse(id);
+
+      return course;
+    } catch (e) {
+      logger.error('[course]: ' + e);
+      throw new InternalServerException();
+    }
+  }
+
+  /**
+   * @param {ObjectId} id - ObjectId of the course to delete
+   */
+  static async deleteCourse(id) {
+    if (!id) {
+      throw new BadRequestException();
+    }
+    logger.info('[course]: Delete course no. ' + id);
+    try {
+      const course = await CourseService.deleteCourse(id);
 
       return course;
     } catch (e) {
