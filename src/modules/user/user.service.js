@@ -17,6 +17,15 @@ class UserService {
     const userList = await User.find({});
     return userList;
   }
+
+  /**
+   * Create new user entry
+   * @returns User object newly created
+   */
+  static async createNewUser(newUserObj) {
+    const newUser = await User.create(newUserObj);
+    return newUser;
+  }
 }
 
 module.exports = { UserService };

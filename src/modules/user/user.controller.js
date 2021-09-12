@@ -24,6 +24,17 @@ class UserController {
       throw new InternalServerException();
     }
   }
+
+  static async createNewUser(newUserObj) {
+    try {
+      logger.info('[user]: creating new user entry');
+      const newUser = await UserService.createNewUser(newUserObj);
+
+      return newUser;
+    } catch (e) {
+      throw new InternalServerException();
+    }
+  }
 }
 
 module.exports = { UserController };
