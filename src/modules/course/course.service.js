@@ -47,7 +47,7 @@ class CourseService {
    * Fetch a course by Id
    * @param {ObjectId} id - ObjectId of the course to get
    */
-  static async findCourse(id) {
+  static async findCourseById(id) {
     const course = await Course.findById(id);
     if (!course) {
       // course not found
@@ -81,7 +81,8 @@ class CourseService {
     course.featured = featured || false;
     course.tags = tags;
     course.playlistId = playlistId;
-    return course.save();
+    const savedCourse = await course.save();
+    return savedCourse;
   }
 
   /**
@@ -115,16 +116,18 @@ class CourseService {
     course.featured = featured || false;
     course.tags = tags;
     course.playlistId = playlistId;
-    return course.save();
+    const savedCourse = await course.save();
+    return savedCourse;
   }
 
   /**
    * Delete a course by Id
    * @param {ObjectId} id - ObjectId of the course to delete
+   * @returns {Course | null} returns Course if delete successful else null
    */
   static async deleteCourse(id) {
-    const course = Course.findByIdAndDelete(id);
-    return course;
+    const deletedCourse = await Course.findByIdAndDelete(id);
+    return deletedCourse;
   }
 }
 

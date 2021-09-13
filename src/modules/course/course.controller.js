@@ -27,11 +27,11 @@ class CourseController {
   }
 
   /**
-   * @param {object} obj - An object having all required attributes.
+   * @param {object} obj - An object having all required course attributes.
    */
   static async createCourse(obj) {
     logger.info('[course]: create new course');
-    let { title, instructors, enrollements, featured, tags } = obj;
+    let { title, instructors, enrollements, featured, tags, playlistId } = obj;
     try {
       const course = await CourseService.createNewCourse(
         title,
@@ -58,7 +58,7 @@ class CourseController {
       throw new BadRequestException();
     }
     logger.info('[course]: Update course no. ' + id);
-    let { title, instructors, enrollements, featured, tags } = obj;
+    let { title, instructors, enrollements, featured, tags, playlistId } = obj;
     try {
       const course = await CourseService.updateCourse(
         id,
@@ -80,13 +80,13 @@ class CourseController {
   /**
    * @param {ObjectId} id - ObjectId of the course to get
    */
-  static async getCourse(id) {
+  static async getCourseById(id) {
     if (!id) {
       throw new BadRequestException();
     }
     logger.info('[course]: Get course no. ' + id);
     try {
-      const course = await CourseService.findCourse(id);
+      const course = await CourseService.findCourseById(id);
 
       return course;
     } catch (e) {

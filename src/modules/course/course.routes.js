@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 
 /**to get a course by id */
 router.get('/:id', async (req, res) => {
-  const course = await CourseController.getCourse(req.params.id);
+  const course = await CourseController.getCourseById(req.params.id);
   return res.json(course);
 });
 
