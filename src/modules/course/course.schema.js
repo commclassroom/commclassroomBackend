@@ -28,7 +28,7 @@ const courseSchema = new Schema(
       min: 1,
       max: 5,
     },
-    enrollements: {
+    enrollments: {
       type: [
         {
           user: {
