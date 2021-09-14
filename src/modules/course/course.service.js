@@ -58,22 +58,18 @@ class CourseService {
 
   /**
    * Create a course.
-   * @param {string} title - The title of the course.
-   * @param {Array<{name : string}>} instructors - The instuctors of the course.
-   * @param {Array<{user: objectId,rating: Number}>} enrollements - The students enrolled in the course.
-   * @param {bool} featured - Is the course featured
-   * @param {Array<string>} tags - Tags related to the course
-   * @param {string} playlistId - YouTube playlist id
+   * @param {object} courseObj - Object containing all the course attributes.
+   * @param {string} courseObj.title - The title of the course.
+   * @param {Array<{name : string}>} courseObj.instructors - The instuctors of the course.
+   * @param {Array<{user: objectId,rating: Number}>} courseObj.enrollements - The students enrolled in the course.
+   * @param {bool} courseObj.featured - Is the course featured
+   * @param {Array<string>} courseObj.tags - Tags related to the course
+   * @param {string} courseObj.playlistId - YouTube playlist id
    */
-  static async createNewCourse(
-    title,
-    instructors,
-    enrollements,
-    featured,
-    tags,
-    playlistId,
-  ) {
+  static async createNewCourse(courseObj) {
     const course = new Course();
+    const { title, instructors, enrollements, featured, tags, playlistId } =
+      courseObj;
     course.title = title;
     course.instructors = instructors;
     course.enrollements = enrollements;
@@ -87,28 +83,22 @@ class CourseService {
 
   /**
    * Update a course.
-   * @param {ObjectId} id - The id of the course to update
-   * @param {string} title - The title of the course.
-   * @param {Array<{name : string}>} instructors - The instuctors of the course.
-   * @param {Array<{user: objectId,rating: Number}>} enrollements - The students enrolled in the course.
-   * @param {bool} featured - Is the course featured
-   * @param {Array<string>} tags - Tags related to the course
-   * @param {string} playlistId - YouTube playlist id
+   * @param {object} courseObj - Object containing all the course attributes.
+   * @param {string} courseObj.title - The title of the course.
+   * @param {Array<{name : string}>} courseObj.instructors - The instuctors of the course.
+   * @param {Array<{user: objectId,rating: Number}>} courseObj.enrollements - The students enrolled in the course.
+   * @param {bool} courseObj.featured - Is the course featured
+   * @param {Array<string>} courseObj.tags - Tags related to the course
+   * @param {string} courseObj.playlistId - YouTube playlist id
    */
-  static async updateCourse(
-    id,
-    title,
-    instructors,
-    enrollements,
-    featured,
-    tags,
-    playlistId,
-  ) {
+  static async updateCourse(courseObj) {
     const course = await Course.findById(id);
-    if (!course) {
+    if (course === null) {
       // course not found
       throw new NotFoundException();
     }
+    const { title, instructors, enrollements, featured, tags, playlistId } =
+      courseObj;
     course.title = title;
     course.instructors = instructors;
     course.enrollements = enrollements;

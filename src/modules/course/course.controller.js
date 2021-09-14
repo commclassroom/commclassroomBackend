@@ -27,20 +27,13 @@ class CourseController {
   }
 
   /**
-   * @param {object} obj - An object having all required course attributes.
+   * @param {object} courseObj - An object having all required course attributes.
    */
-  static async createCourse(obj) {
+  static async createCourse(courseObj) {
     logger.info('[course]: create new course');
     let { title, instructors, enrollements, featured, tags, playlistId } = obj;
     try {
-      const course = await CourseService.createNewCourse(
-        title,
-        instructors,
-        enrollements,
-        featured,
-        tags,
-        playlistId,
-      );
+      const course = await CourseService.createNewCourse(courseObj);
 
       return course;
     } catch (e) {
@@ -51,24 +44,15 @@ class CourseController {
 
   /**
    * @param {ObjectId} id - ObjectId of the course to update
-   * @param {object} obj - An object having all required attributes.
+   * @param {object} courseObj - An object having all required attributes.
    */
-  static async updateCourse(id, obj) {
+  static async updateCourse(id, courseObj) {
     if (!id) {
       throw new BadRequestException();
     }
-    logger.info('[course]: Update course no. ' + id);
-    let { title, instructors, enrollements, featured, tags, playlistId } = obj;
+    logger.info('[course]: update course no. ' + id);
     try {
-      const course = await CourseService.updateCourse(
-        id,
-        title,
-        instructors,
-        enrollements,
-        featured,
-        tags,
-        playlistId,
-      );
+      const course = await CourseService.updateCourse(courseObj);
 
       return course;
     } catch (e) {
@@ -102,7 +86,7 @@ class CourseController {
     if (!id) {
       throw new BadRequestException();
     }
-    logger.info('[course]: Delete course no. ' + id);
+    logger.info('[course]: delete course no. ' + id);
     try {
       const course = await CourseService.deleteCourse(id);
 
