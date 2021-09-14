@@ -15,19 +15,19 @@ class CourseService {
    * @param {Array<{user: objectId,rating: Number}>} enrollements - The students enrolled in the course.
    * @returns {number | undefined} - The average rating if possible else undefined
    */
-  static getAvgRating(enrollements) {
-    if (!enrollements) {
+  static getAvgRating(enrollments) {
+    if (!enrollments) {
       return undefined;
     }
     // filtering all the enrollements with a rating.
-    const enrollementsWithRatings = enrollements.filter(
+    const enrollmentsWithRatings = enrollments.filter(
       (enrollement) => enrollement.rating,
     );
-    const len = enrollementsWithRatings.length;
+    const len = enrollmentsWithRatings.length;
     if (len === 0) {
       return undefined;
     }
-    const sumofRatings = enrollementsWithRatings.reduce((sum, enrollement) => {
+    const sumofRatings = enrollmentsWithRatings.reduce((sum, enrollement) => {
       return sum + enrollement.rating;
     }, 0);
 
