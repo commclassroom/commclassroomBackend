@@ -60,7 +60,7 @@ class CourseService {
    * Create a course.
    * @param {string} title - The title of the course.
    * @param {Array<{name : string}>} instructors - The instuctors of the course.
-   * @param {Array<{user: objectId,rating: Number}>} enrollements - The students enrolled in the course.
+   * @param {Array<{user: objectId,rating: Number}>} enrollments - The students enrolled in the course.
    * @param {bool} featured - Is the course featured
    * @param {Array<string>} tags - Tags related to the course
    * @param {string} playlistId - YouTube playlist id
@@ -68,7 +68,7 @@ class CourseService {
   static async createNewCourse(
     title,
     instructors,
-    enrollements,
+    enrollments,
     featured,
     tags,
     playlistId,
@@ -76,8 +76,8 @@ class CourseService {
     const course = new Course();
     course.title = title;
     course.instructors = instructors;
-    course.enrollements = enrollements;
-    course.course_rating = this.getAvgRating(course.enrollements);
+    course.enrollments = enrollments;
+    course.course_rating = this.getAvgRating(course.enrollments);
     course.featured = featured || false;
     course.tags = tags;
     course.playlistId = playlistId;
@@ -99,7 +99,7 @@ class CourseService {
     id,
     title,
     instructors,
-    enrollements,
+    enrollments,
     featured,
     tags,
     playlistId,
@@ -111,7 +111,7 @@ class CourseService {
     }
     course.title = title;
     course.instructors = instructors;
-    course.enrollements = enrollements;
+    course.enrollments = enrollments;
     course.course_rating = this.getAvgRating(course.enrollements);
     course.featured = featured || false;
     course.tags = tags;
