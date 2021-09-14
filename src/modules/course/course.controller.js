@@ -31,12 +31,12 @@ class CourseController {
    */
   static async createCourse(obj) {
     logger.info('[course]: create new course');
-    let { title, instructors, enrollements, featured, tags, playlistId } = obj;
+    let { title, instructors, enrollments, featured, tags, playlistId } = obj;
     try {
       const course = await CourseService.createNewCourse(
         title,
         instructors,
-        enrollements,
+        enrollments,
         featured,
         tags,
         playlistId,
@@ -58,13 +58,13 @@ class CourseController {
       throw new BadRequestException();
     }
     logger.info('[course]: Update course no. ' + id);
-    let { title, instructors, enrollements, featured, tags, playlistId } = obj;
+    let { title, instructors, enrollments, featured, tags, playlistId } = obj;
     try {
       const course = await CourseService.updateCourse(
         id,
         title,
         instructors,
-        enrollements,
+        enrollments,
         featured,
         tags,
         playlistId,
