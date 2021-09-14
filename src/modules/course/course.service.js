@@ -112,7 +112,7 @@ class CourseService {
     course.title = title;
     course.instructors = instructors;
     course.enrollments = enrollments;
-    course.course_rating = this.getAvgRating(course.enrollements);
+    course.course_rating = this.getAvgRating(course.enrollments);
     course.featured = featured || false;
     course.tags = tags;
     course.playlistId = playlistId;
