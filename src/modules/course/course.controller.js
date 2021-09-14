@@ -31,7 +31,6 @@ class CourseController {
    */
   static async createCourse(courseObj) {
     logger.info('[course]: create new course');
-    let { title, instructors, enrollements, featured, tags, playlistId } = obj;
     try {
       const course = await CourseService.createNewCourse(courseObj);
 

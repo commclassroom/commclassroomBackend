@@ -11,24 +11,24 @@ const Course = require('./course.schema');
  */
 class CourseService {
   /**
-   * Function to calculate avg. rating from enrollements.
-   * @param {Array<{user: objectId,rating: Number}>} enrollements - The students enrolled in the course.
+   * Function to calculate avg. rating from enrollments.
+   * @param {Array<{user: objectId,rating: Number}>} enrollments - The students enrolled in the course.
    * @returns {number | undefined} - The average rating if possible else undefined
    */
-  static getAvgRating(enrollements) {
-    if (!enrollements) {
+  static getAvgRating(enrollments) {
+    if (!enrollments) {
       return undefined;
     }
-    // filtering all the enrollements with a rating.
-    const enrollementsWithRatings = enrollements.filter(
-      (enrollement) => enrollement.rating,
+    // filtering all the enrollments with a rating.
+    const enrollmentsWithRatings = enrollments.filter(
+      (enrollments) => enrollments.rating,
     );
-    const len = enrollementsWithRatings.length;
+    const len = enrollmentsWithRatings.length;
     if (len === 0) {
       return undefined;
     }
-    const sumofRatings = enrollementsWithRatings.reduce((sum, enrollement) => {
-      return sum + enrollement.rating;
+    const sumofRatings = enrollmentsWithRatings.reduce((sum, enrollments) => {
+      return sum + enrollments.rating;
     }, 0);
 
     return sumofRatings / len;
@@ -61,19 +61,19 @@ class CourseService {
    * @param {object} courseObj - Object containing all the course attributes.
    * @param {string} courseObj.title - The title of the course.
    * @param {Array<{name : string}>} courseObj.instructors - The instuctors of the course.
-   * @param {Array<{user: objectId,rating: Number}>} courseObj.enrollements - The students enrolled in the course.
+   * @param {Array<{user: objectId,rating: Number}>} courseObj.enrollments - The students enrolled in the course.
    * @param {bool} courseObj.featured - Is the course featured
    * @param {Array<string>} courseObj.tags - Tags related to the course
    * @param {string} courseObj.playlistId - YouTube playlist id
    */
   static async createNewCourse(courseObj) {
     const course = new Course();
-    const { title, instructors, enrollements, featured, tags, playlistId } =
+    const { title, instructors, enrollments, featured, tags, playlistId } =
       courseObj;
     course.title = title;
     course.instructors = instructors;
-    course.enrollements = enrollements;
-    course.course_rating = this.getAvgRating(course.enrollements);
+    course.enrollments = enrollments;
+    course.course_rating = this.getAvgRating(course.enrollments);
     course.featured = featured || false;
     course.tags = tags;
     course.playlistId = playlistId;
@@ -86,23 +86,23 @@ class CourseService {
    * @param {object} courseObj - Object containing all the course attributes.
    * @param {string} courseObj.title - The title of the course.
    * @param {Array<{name : string}>} courseObj.instructors - The instuctors of the course.
-   * @param {Array<{user: objectId,rating: Number}>} courseObj.enrollements - The students enrolled in the course.
+   * @param {Array<{user: objectId,rating: Number}>} courseObj.enrollments - The students enrolled in the course.
    * @param {bool} courseObj.featured - Is the course featured
    * @param {Array<string>} courseObj.tags - Tags related to the course
    * @param {string} courseObj.playlistId - YouTube playlist id
    */
-  static async updateCourse(courseObj) {
+  static async updateCourse(id, courseObj) {
     const course = await Course.findById(id);
     if (course === null) {
       // course not found
       throw new NotFoundException();
     }
-    const { title, instructors, enrollements, featured, tags, playlistId } =
+    const { title, instructors, enrollments, featured, tags, playlistId } =
       courseObj;
     course.title = title;
     course.instructors = instructors;
-    course.enrollements = enrollements;
-    course.course_rating = this.getAvgRating(course.enrollements);
+    course.enrollments = enrollments;
+    course.course_rating = this.getAvgRating(course.enrollments);
     course.featured = featured || false;
     course.tags = tags;
     course.playlistId = playlistId;
