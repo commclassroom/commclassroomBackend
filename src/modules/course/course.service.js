@@ -49,7 +49,7 @@ class CourseService {
    */
   static async findCourseById(id) {
     const course = await Course.findById(id);
-    if (!course) {
+    if (course === null) {
       // course not found
       throw new NotFoundException();
     }

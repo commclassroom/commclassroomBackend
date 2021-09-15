@@ -30,8 +30,8 @@ class CourseController {
    * @param {object} courseObj - An object having all required course attributes.
    */
   static async createCourse(courseObj) {
-    logger.info('[course]: create new course');
     try {
+      logger.info('[course]: create new course');
       const course = await CourseService.createNewCourse(courseObj);
 
       return course;
@@ -49,8 +49,8 @@ class CourseController {
     if (!id) {
       throw new BadRequestException();
     }
-    logger.info('[course]: update course no. ' + id);
     try {
+      logger.info('[course]: update course no. ' + id);
       const course = await CourseService.updateCourse(id, courseObj);
 
       return course;
@@ -67,8 +67,8 @@ class CourseController {
     if (!id) {
       throw new BadRequestException();
     }
-    logger.info('[course]: Get course no. ' + id);
     try {
+      logger.info('[course]: get course no. ' + id);
       const course = await CourseService.findCourseById(id);
 
       return course;
@@ -85,8 +85,8 @@ class CourseController {
     if (!id) {
       throw new BadRequestException();
     }
-    logger.info('[course]: delete course no. ' + id);
     try {
+      logger.info('[course]: delete course no. ' + id);
       const course = await CourseService.deleteCourse(id);
 
       return course;
