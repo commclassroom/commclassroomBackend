@@ -17,6 +17,26 @@ class UserService {
     const userList = await User.find({});
     return userList;
   }
+  /**
+   * Fetch a particular usr details by id
+   * @param email user email
+   * @returns Object<User> Object of properties of user.
+   */
+
+  static async getUserByEmail(userEmail) {
+    const user = await User.find({email:userEmail});
+    return user ? {'notFound':false,...user} : null;
+  }
+  /**
+   * Fetch a particular usr details by id
+   * @param id user id
+   * @returns Object<User> Object of properties of user.
+   */
+
+  static async getUserByEmail(userId) {
+    const user = await User.find({_id:userId});
+    return user ? {'notFound':false,...user} : null;
+  }
 }
 
 module.exports = { UserService };
