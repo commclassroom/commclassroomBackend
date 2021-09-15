@@ -24,8 +24,8 @@ class UserService {
    */
 
   static async getUserByEmail(userEmail) {
-    const user = await User.find({email:userEmail});
-    return user ? {'notFound':false,...user} : null;
+    const user = await User.find({ email: userEmail });
+    return user ? { notFound: false, ...user } : null;
   }
   /**
    * Fetch a particular usr details by id
@@ -33,9 +33,9 @@ class UserService {
    * @returns Object<User> Object of properties of user.
    */
 
-  static async getUserByEmail(userId) {
-    const user = await User.find({_id:userId});
-    return user ? {'notFound':false,...user} : null;
+  static async getUserById(userId) {
+    const user = await User.find({ _id: userId });
+    return user ? { notFound: false, ...user } : null;
   }
 }
 
