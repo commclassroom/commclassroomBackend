@@ -25,7 +25,8 @@
     "http-exception-transformer": "^1.2.3",
     "mongoose": "^6.0.5",
     "node-fetch": "^3.0.0",
-    "winston": "^3.3.3"
+    "winston": "^3.3.3",
+    "mongoose-type-email":"^1.1.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.15.4",
