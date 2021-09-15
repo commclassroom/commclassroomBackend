@@ -25,7 +25,7 @@ class UserService {
 
   static async getUserByEmail(userEmail) {
     const user = await User.find({ email: userEmail });
-    return user ? { notFound: false, ...user } : null;
+    return user;
   }
   /**
    * Fetch a particular usr details by id
@@ -35,7 +35,7 @@ class UserService {
 
   static async getUserById(userId) {
     const user = await User.find({ _id: userId });
-    return user ? { notFound: false, ...user } : null;
+    return user;
   }
 }
 
