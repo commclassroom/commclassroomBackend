@@ -67,16 +67,11 @@ class CourseService {
    * @param {string} courseObj.playlistId - YouTube playlist id
    */
   static async createNewCourse(courseObj) {
-    const course = new Course();
-    const { title, instructors, enrollments, featured, tags, playlistId } =
-      courseObj;
-    course.title = title;
-    course.instructors = instructors;
-    course.enrollments = enrollments;
-    course.course_rating = this.getAvgRating(course.enrollments);
-    course.featured = featured || false;
-    course.tags = tags;
-    course.playlistId = playlistId;
+    const course_rating = this.getAvgRating(courseObj.enrollments);
+    const course = new Course({
+      ...courseObj,
+      course_rating,
+    });
     const savedCourse = await course.save();
     return savedCourse;
   }
@@ -92,21 +87,21 @@ class CourseService {
    * @param {string} courseObj.playlistId - YouTube playlist id
    */
   static async updateCourse(id, courseObj) {
-    const course = await Course.findById(id);
-    if (course === null) {
+    const course_rating = this.getAvgRating(courseObj.enrollments);
+    const savedCourse = await Course.findByIdAndUpdate(
+      id,
+      {
+        ...courseObj,
+        course_rating,
+      },
+      {
+        new: true,
+      },
+    );
+    if (savedCourse === null) {
       // course not found
       throw new NotFoundException();
     }
-    const { title, instructors, enrollments, featured, tags, playlistId } =
-      courseObj;
-    course.title = title;
-    course.instructors = instructors;
-    course.enrollments = enrollments;
-    course.course_rating = this.getAvgRating(course.enrollments);
-    course.featured = featured || false;
-    course.tags = tags;
-    course.playlistId = playlistId;
-    const savedCourse = await course.save();
     return savedCourse;
   }
 

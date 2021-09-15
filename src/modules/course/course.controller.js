@@ -51,7 +51,7 @@ class CourseController {
     }
     logger.info('[course]: update course no. ' + id);
     try {
-      const course = await CourseService.updateCourse(courseObj);
+      const course = await CourseService.updateCourse(id, courseObj);
 
       return course;
     } catch (e) {
