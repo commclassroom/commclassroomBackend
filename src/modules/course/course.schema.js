@@ -23,7 +23,7 @@ const courseSchema = new Schema(
       ],
       default: [],
     },
-    course_rating: {
+    courseRating: {
       type: Number,
       min: 1,
       max: 5,

@@ -67,10 +67,10 @@ class CourseService {
    * @param {string} courseObj.playlistId - YouTube playlist id
    */
   static async createNewCourse(courseObj) {
-    const course_rating = this.getAvgRating(courseObj.enrollments);
+    const courseRating = this.getAvgRating(courseObj.enrollments);
     const course = new Course({
       ...courseObj,
-      course_rating,
+      courseRating,
     });
     const savedCourse = await course.save();
     return savedCourse;
@@ -87,12 +87,12 @@ class CourseService {
    * @param {string} courseObj.playlistId - YouTube playlist id
    */
   static async updateCourse(id, courseObj) {
-    const course_rating = this.getAvgRating(courseObj.enrollments);
+    const courseRating = this.getAvgRating(courseObj.enrollments);
     const savedCourse = await Course.findByIdAndUpdate(
       id,
       {
         ...courseObj,
-        course_rating,
+        courseRating,
       },
       {
         new: true,
