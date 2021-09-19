@@ -8,7 +8,7 @@ const { logger } = require('../../services/logger');
 const { CourseService } = require('./course.service');
 
 /**
- * UserController contains definitions of all route handlers in /user namespace.
+ * CourseController contains definitions of all route handlers in /course namespace.
  */
 class CourseController {
   /**

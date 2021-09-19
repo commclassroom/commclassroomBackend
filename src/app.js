@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 /** bind all rooutes to application */
 app.use('/user', UserRoutes);
 app.use('/video', VideoRoutes);
-app.use('/faqs', FaqRoutes);
+app.use('/faq', FaqRoutes);
 app.use('/course', CourseRoutes);
 
 /** transform all errors into standard messages */

@@ -8,7 +8,7 @@ const { logger } = require('../../services/logger');
 const { FaqService } = require('./faq.service');
 
 /**
- * UserController contains definitions of all route handlers in /user namespace.
+ * FaqController contains definitions of all route handlers in /faq namespace.
  */
 class FaqController {
   /**
@@ -16,7 +16,7 @@ class FaqController {
    */
   static async getAllFaqs() {
     try {
-      logger.info('[user]: listing all users');
+      logger.info('[faq]: listing all users');
       const faqList = await FaqService.findAllFaqs();
 
       return faqList;

@@ -5,7 +5,7 @@ const router = express.Router();
 /** load the service */
 const { VideoController } = require('./video.controller');
 
-/** to list all users */
+/** to list all videos */
 router.get('/', async (req, res) => {
   const videoList = await VideoController.getAllVideos();
   return res.json(videoList);

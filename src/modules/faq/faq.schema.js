@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 require('mongoose-type-email');
 
 /**
- * Define the structure of Video document here
+ * Define the structure of Faq document here
  */
 const faqSchema = new Schema({
   question: {

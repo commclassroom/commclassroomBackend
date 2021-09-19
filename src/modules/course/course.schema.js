@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 require('mongoose-type-email');
 
 /**
- * Define the structure of User document here
+ * Define the structure of Course document here
  */
 const courseSchema = new Schema({
   name: {
@@ -27,4 +27,4 @@ const courseSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('User', courseSchema);
+module.exports = mongoose.model('Course', courseSchema);

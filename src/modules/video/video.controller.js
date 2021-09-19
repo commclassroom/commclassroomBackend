@@ -8,7 +8,7 @@ const { logger } = require('../../services/logger');
 const { VideoService } = require('./video.service');
 
 /**
- * UserController contains definitions of all route handlers in /user namespace.
+ * VideoController contains definitions of all route handlers in /video namespace.
  */
 class VideoController {
   /**
@@ -16,7 +16,7 @@ class VideoController {
    */
   static async getAllVideos() {
     try {
-      logger.info('[user]: listing all users');
+      logger.info('[faq]: listing all users');
       const videoList = await VideoService.findAllVideos();
       return videoList;
     } catch (e) {
