@@ -17,6 +17,19 @@ const userSchema = new Schema({
     required: true,
     correctTld: true,
   },
+  discordId: {
+    type: String,
+    optional: true,
+  },
+  activeCourses: {
+    type: [String],
+  },
+  linkedCourses: {
+    type: [String],
+  },
+  userType: {
+    type: Number,
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);

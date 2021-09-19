@@ -9,6 +9,9 @@ const { initializeMongoDB } = require('./services/database');
 
 /** load modules as routes */
 const UserRoutes = require('./modules/user/user.routes');
+const VideoRoutes = require('./modules/video/video.routes');
+const FaqRoutes = require('./modules/faq/faq.routes');
+const CourseRoutes = require('./modules/course/course.routes');
 
 /** declare application and load middleware */
 const app = express();
@@ -24,6 +27,9 @@ app.get('/', (req, res) => {
 
 /** bind all rooutes to application */
 app.use('/user', UserRoutes);
+app.use('/video', VideoRoutes);
+app.use('/faqs', FaqRoutes);
+app.use('/course', CourseRoutes);
 
 /** transform all errors into standard messages */
 app.use(HttpExceptionTransformer);
