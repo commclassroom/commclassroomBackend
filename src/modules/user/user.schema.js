@@ -70,7 +70,7 @@ const userSchema = new Schema({
           type: String,
           enum: ['IN_PROGRESS', 'ABONDONED', 'ENROLLED', 'COMPLETED'],
         },
-        completeed: Number,
+        completed: Number,
       },
     ],
   },
