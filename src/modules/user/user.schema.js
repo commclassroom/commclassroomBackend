@@ -1,44 +1,7 @@
 const mongoose = require('mongoose');
-const CourseSchema = require('../course/course.schema');
 
 const { Schema } = mongoose;
 require('mongoose-type-email');
-
-// SUPPORTING TYPES
-const Gender = {
-  MALE: 1,
-  FEMALE: 2,
-  OTHER: 3,
-};
-Object.freeze(Gender);
-const EducationLevel = {
-  HIGH_SCHOOL: 1,
-  UNDER_GRAD: 2,
-  GRAD: 3,
-};
-Object.freeze(EducationLevel);
-const AcccountStatus = {
-  BLOCKED: 1,
-  SUSPENDED: 2,
-  UNVERIFIED: 3,
-  VERIFIED: 4,
-};
-Object.freeze(EducationLevel);
-const AccountType = {
-  STUDENT: 1,
-  ASSISTANT: 2,
-  ADMIN: 3,
-  INSTRUCTOR: 4,
-};
-Object.freeze(EducationLevel);
-const CourseStatus = {
-  IN_PROGRESS: 1,
-  ABONDONED: 2,
-  ENROLLED: 3,
-  COMPLETED: 4,
-};
-Object.freeze(CourseStatus);
-const course = CourseSchema;
 /**
  * Define the structure of User document here
  */
@@ -57,13 +20,15 @@ const userSchema = new Schema({
     type: Date,
   },
   gender: {
-    type: Gender,
+    type: String,
+    enum: ['MALE', 'FEMALE', 'OTHER'],
   },
   school: {
     type: String,
   },
   currentEducationLevel: {
-    type: EducationLevel,
+    type: String,
+    enum: ['HIGH_SCHOOL', 'UNDER_GRAD', 'GRAD'],
   },
   socialAccounts: [
     {
@@ -87,21 +52,25 @@ const userSchema = new Schema({
     type: Date,
   },
   accountStatus: {
-    type: AcccountStatus,
+    type: String,
+    enum: ['BLOCKED', 'SUSPENDED', 'UNVERIFIED', 'VERIFIED'],
   },
   accountType: {
-    type: AccountType,
+    type: String,
+    enum: ['STUDENT', 'ASSISTANT', 'ADMIN', 'INSTRUCTOR'],
   },
 
   courses: {
     type: [
       {
-        course: course.id,
+        course: { type: Schema.Types.ObjectId, ref: 'Course' },
         enrolled: Date,
         lastOpened: Date,
-        status: CourseStatus,
+        status: {
+          type: String,
+          enum: ['IN_PROGRESS', 'ABONDONED', 'ENROLLED', 'COMPLETED'],
+        },
         completeed: Number,
-
       },
     ],
   },
