@@ -6,11 +6,11 @@ const { Schema } = mongoose;
 require('mongoose-type-email');
 
 /**
- * Define the structure of User document here
+ * Define the structure of Course document here
  */
 
-const user = new UserSchema();
-const review = new ReviewSchema();
+const user = UserSchema;
+const review = ReviewSchema;
 const courseSchema = new Schema({
   title: {
     type: String,

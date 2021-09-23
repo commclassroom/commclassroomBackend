@@ -38,7 +38,7 @@ const CourseStatus = {
   COMPLETED: 4,
 };
 Object.freeze(CourseStatus);
-const course = new CourseSchema();
+const course = CourseSchema;
 /**
  * Define the structure of User document here
  */

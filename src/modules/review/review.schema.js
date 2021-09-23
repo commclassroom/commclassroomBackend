@@ -12,11 +12,11 @@ const status = {
 };
 Object.freeze(status);
 /**
- * Define the structure of User document here
+ * Define the structure of Review document here
  */
 
-const user = new UserSchema();
-const course = new CourseSchema();
+const user = UserSchema;
+const course = CourseSchema;
 const reviewSchema = new Schema({
   rating: {
     type: Number,
