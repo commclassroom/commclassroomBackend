@@ -12,48 +12,53 @@ const courseSchema = new Schema(
       required: true,
       unique: true,
     },
-    instructors: {
-      type: [
-        {
-          name: {
-            type: String,
-            required: true,
-          },
+    category: String,
+    instructors: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    assistants: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    students: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    totalLikes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Review',
+      },
+    ],
+    faq: [
+      {
+        question: {
+          type: String,
+          required: true,
         },
-      ],
-      default: [],
-    },
-    courseRating: {
-      type: Number,
-      min: 1,
-      max: 5,
-    },
-    enrollments: {
-      type: [
-        {
-          user: {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-            required: true,
-          },
-          rating: {
-            type: Number,
-            min: 1,
-            max: 5,
-          },
+        answer: {
+          type: String,
+          required: true,
         },
-      ],
-      default: [],
-    },
-    featured: {
-      type: Boolean,
-      default: false,
-    },
-    tags: {
-      type: [String],
-      default: [],
-    },
-    playlistId: String,
+        author: {
+          type: Schema.Types.ObjectId,
+          ref: 'Review',
+        },
+      },
+    ],
   },
   {
     timestamps: true,
