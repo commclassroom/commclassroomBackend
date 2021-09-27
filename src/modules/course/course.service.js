@@ -11,30 +11,6 @@ const Course = require('./course.schema');
  */
 class CourseService {
   /**
-   * Function to calculate avg. rating from enrollments.
-   * @param {Array<{user: objectId,rating: Number}>} enrollments - The students enrolled in the course.
-   * @returns {number | undefined} - The average rating if possible else undefined
-   */
-  static getAvgRating(enrollments) {
-    if (!enrollments) {
-      return undefined;
-    }
-    // filtering all the enrollments with a rating.
-    const enrollmentsWithRatings = enrollments.filter(
-      (enrollments) => enrollments.rating,
-    );
-    const len = enrollmentsWithRatings.length;
-    if (len === 0) {
-      return undefined;
-    }
-    const sumofRatings = enrollmentsWithRatings.reduce((sum, enrollments) => {
-      return sum + enrollments.rating;
-    }, 0);
-
-    return sumofRatings / len;
-  }
-
-  /**
    * Fetch all course details
    * @returns {Array<Course>} list of courses in the system
    */
@@ -60,18 +36,17 @@ class CourseService {
    * Create a course.
    * @param {object} courseObj - Object containing all the course attributes.
    * @param {string} courseObj.title - The title of the course.
-   * @param {Array<{name : string}>} courseObj.instructors - The instuctors of the course.
-   * @param {Array<{user: objectId,rating: Number}>} courseObj.enrollments - The students enrolled in the course.
-   * @param {bool} courseObj.featured - Is the course featured
-   * @param {Array<string>} courseObj.tags - Tags related to the course
-   * @param {string} courseObj.playlistId - YouTube playlist id
+   * @param {string} courseObj.category - The category of the course.
+   * @param {Array< User.ObjectId >} courseObj.instructors - The ids of the instuctor users.
+   * @param {Array< User.ObjectId >} courseObj.assistants - The ids of assistant users.
+   * @param {Array< User.ObjectId >} courseObj.students - The ids of students enrolled in the course.
+   * @param {Array< User.ObjectId >} courseObj.totalLikes - The ids of students that liked the course.
+   * @param {Array< Reviews.ObjectId >} courseObj.reviews - The ids of the course reviews.
+   * @param {Array<{question: String,answer: String, author: User.ObjectId}>} courseObj.faq - The faqs related to the course.
    */
   static async createNewCourse(courseObj) {
-    const courseRating = this.getAvgRating(courseObj.enrollments);
-    const course = new Course({
-      ...courseObj,
-      courseRating,
-    });
+    const course = new Course(courseObj);
+
     const savedCourse = await course.save();
     return savedCourse;
   }
@@ -80,24 +55,18 @@ class CourseService {
    * Update a course.
    * @param {object} courseObj - Object containing all the course attributes.
    * @param {string} courseObj.title - The title of the course.
-   * @param {Array<{name : string}>} courseObj.instructors - The instuctors of the course.
-   * @param {Array<{user: objectId,rating: Number}>} courseObj.enrollments - The students enrolled in the course.
-   * @param {bool} courseObj.featured - Is the course featured
-   * @param {Array<string>} courseObj.tags - Tags related to the course
-   * @param {string} courseObj.playlistId - YouTube playlist id
+   * @param {string} courseObj.category - The category of the course.
+   * @param {Array< User.ObjectId >} courseObj.instructors - The ids of the instuctor users.
+   * @param {Array< User.ObjectId >} courseObj.assistants - The ids of assistant users.
+   * @param {Array< User.ObjectId >} courseObj.students - The ids of students enrolled in the course.
+   * @param {Array< User.ObjectId >} courseObj.totalLikes - The ids of students that liked the course.
+   * @param {Array< Reviews.ObjectId >} courseObj.reviews - The ids of the course reviews.
+   * @param {Array<{question: String,answer: String, author: User.ObjectId}>} courseObj.faq - The faqs related to the course.
    */
   static async updateCourse(id, courseObj) {
-    const courseRating = this.getAvgRating(courseObj.enrollments);
-    const savedCourse = await Course.findByIdAndUpdate(
-      id,
-      {
-        ...courseObj,
-        courseRating,
-      },
-      {
-        new: true,
-      },
-    );
+    const savedCourse = await Course.findByIdAndUpdate(id, courseObj, {
+      new: true,
+    });
     if (savedCourse === null) {
       // course not found
       throw new NotFoundException();
