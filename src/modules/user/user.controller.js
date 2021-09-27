@@ -24,6 +24,27 @@ class UserController {
       throw new InternalServerException();
     }
   }
+
+  static async getUserById(id) {
+    try {
+      logger.info('[user]: listing user by given id');
+      const user = await UserService.getUserById(id);
+
+      return user;
+    } catch (e) {
+      throw new InternalServerException();
+    }
+  }
+
+  static async getUserByEmail(email) {
+    try {
+      logger.info('[user]: listing user by given email');
+      const user = await UserService.getUserByEmail(email);
+      return user;
+    } catch (e) {
+      throw new InternalServerException();
+    }
+  }
 }
 
 module.exports = { UserController };

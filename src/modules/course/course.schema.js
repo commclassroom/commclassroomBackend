@@ -12,7 +12,7 @@ const courseSchema = new Schema({
     type: String,
     required: true,
   },
-  instructor: {
+  instructors: {
     type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
   assistants: {
@@ -21,7 +21,7 @@ const courseSchema = new Schema({
   students: {
     type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
-  totalLikes: {
+  likes: {
     type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
   reviews: {

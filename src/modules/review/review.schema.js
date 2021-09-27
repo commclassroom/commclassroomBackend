@@ -24,7 +24,7 @@ const reviewSchema = new Schema({
     type: String,
     enum: ['VISIBLE', 'FEATURED', 'BLOCKED'],
   },
-  upvotes: {
+  likes: {
     type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
 });
