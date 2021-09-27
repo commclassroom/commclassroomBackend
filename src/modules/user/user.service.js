@@ -17,6 +17,25 @@ class UserService {
     const userList = await User.find({});
     return userList;
   }
+
+  /**
+   * Create new user entry
+   * @returns User object newly created
+   */
+  static async createNewUser(newUserObj) {
+    const newUser = await User.create(newUserObj);
+    return newUser;
+  }
+
+  static async updateUser(updatedUserObj) {
+    const updatedUser = await User.findByIdAndUpdate(
+      updatedUserObj._id,
+      updatedUserObj,
+      { new: true },
+    );
+
+    return updatedUser;
+  }
   /**
    * Fetch a particular usr details by id
    * @param email user email
