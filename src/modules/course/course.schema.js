@@ -31,7 +31,7 @@ const courseSchema = new Schema(
         ref: 'User',
       },
     ],
-    totalLikes: [
+    likes: [
       {
         type: Schema.Types.ObjectId,
         ref: 'User',
