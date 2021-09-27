@@ -14,6 +14,7 @@ const CourseRoutes = require('./modules/course/course.routes');
 /** declare application and load middleware */
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 /** use json parser and body parser*/
 app.use(express.urlencoded({ extended: false }));

@@ -11,5 +11,17 @@ router.get('/', async (req, res) => {
   return res.json(userList);
 });
 
+/** to create a single new user */
+router.post('/', async (req, res) => {
+  const newUser = await UserController.createNewUser(req.body); //req.body contains the new User object sent from client
+  return res.json(newUser);
+});
+
+/** to update user details */
+router.patch('/', async (req, res) => {
+  const updatedUser = await UserController.updateUserDetails(req.body); //req.body contains the User object with updated details from client
+  return res.json(updatedUser);
+});
+
 /** export the routes to be binded to application */
 module.exports = router;
