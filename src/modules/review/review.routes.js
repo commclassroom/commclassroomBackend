@@ -33,9 +33,9 @@ router.get('/:userid', async (req, res) => {
   return res.json(userReviews);
 });
 
-/** to update review details */
+/** to get reviews with specified course details */
 router.get('/:courseid', async (req, res) => {
-  // req.body contains the User id from client
+  // req.body contains the course id from client
   const courseReviews = await ReviewController.courseReviews(req.body.courseid);
   return res.json(courseReviews);
 });
