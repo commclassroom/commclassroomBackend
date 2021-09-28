@@ -9,10 +9,16 @@ const { initializeMongoDB } = require('./services/database');
 
 /** load modules as routes */
 const UserRoutes = require('./modules/user/user.routes');
+const CourseRoutes = require('./modules/course/course.routes');
 
 /** declare application and load middleware */
 const app = express();
 app.use(cors());
+app.use(express.json());
+
+/** use json parser and body parser*/
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 /** initialize services */
 initializeMongoDB();
@@ -24,6 +30,7 @@ app.get('/', (req, res) => {
 
 /** bind all rooutes to application */
 app.use('/user', UserRoutes);
+app.use('/course', CourseRoutes);
 
 /** transform all errors into standard messages */
 app.use(HttpExceptionTransformer);
