@@ -29,7 +29,6 @@ class UserService {
 
   static async updateUser(updatedUserObj) {
     const updatedUser = await User.findByIdAndUpdate(
-      // eslint-disable-next-line no-underscore-dangle
       updatedUserObj._id,
       updatedUserObj,
       { new: true },
