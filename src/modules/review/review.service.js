@@ -10,11 +10,11 @@ const Review = require('./review.schema');
  */
 class ReviewService {
   /**
-   * Fetch all Review details
+   * Fetch all Review of a specified courser with id 
    * @returns Array<Review> list of Reviews in the system
    */
-  static async findAllReviews() {
-    const reviewList = await Review.find({});
+  static async getCourseReviews(id) {
+    const reviewList = await Review.find({course:id});
     return reviewList;
   }
 

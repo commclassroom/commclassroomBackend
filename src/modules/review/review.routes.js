@@ -5,12 +5,6 @@ const router = express.Router();
 /** load the service */
 const { ReviewController } = require('./reveiw.controller');
 
-/** to list all reviews */
-router.get('/', async (req, res) => {
-  const reviewList = await ReviewController.getAllUsers();
-  return res.json(reviewList);
-});
-
 /** to create a single new review */
 router.post('/', async (req, res) => {
   // req.body contains the new Review object sent from client
@@ -37,6 +31,13 @@ router.get('/:userid', async (req, res) => {
   // req.body contains the User id from client
   const userReviews = await ReviewController.getReviewsByUserId(req.body.userid);
   return res.json(userReviews);
+});
+
+/** to update review details */
+router.get('/:courseid', async (req, res) => {
+  // req.body contains the User id from client
+  const courseReviews = await ReviewController.courseReviews(req.body.courseid);
+  return res.json(courseReviews);
 });
 
 
