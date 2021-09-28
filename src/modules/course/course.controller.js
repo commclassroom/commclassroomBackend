@@ -34,12 +34,12 @@ class CourseController {
       throw new BadRequestException();
     }
     try {
-      logger.info('[course]: get course no. ' + id);
+      logger.info(`[course]: get course no. ${id}`);
       const course = await CourseService.findCourseById(id);
 
       return course;
     } catch (e) {
-      logger.error('[course]: ' + e);
+      logger.error(`[course]: ${e}`);
       throw new InternalServerException();
     }
   }
@@ -54,7 +54,7 @@ class CourseController {
 
       return course;
     } catch (e) {
-      logger.error('[course]: ' + e);
+      logger.error(`[course]: ${e}`);
       throw new InternalServerException();
     }
   }
@@ -68,12 +68,12 @@ class CourseController {
       throw new BadRequestException();
     }
     try {
-      logger.info('[course]: update course no. ' + id);
+      logger.info(`[course]: update course no. ${id}`);
       const course = await CourseService.updateCourse(id, courseObj);
 
       return course;
     } catch (e) {
-      logger.error('[course]: ' + e);
+      logger.error(`[course]: ${e}`);
       throw new InternalServerException();
     }
   }
@@ -86,12 +86,12 @@ class CourseController {
       throw new BadRequestException();
     }
     try {
-      logger.info('[course]: delete course no. ' + id);
+      logger.info(`[course]: delete course no. ${id}`);
       const course = await CourseService.deleteCourse(id);
 
       return course;
     } catch (e) {
-      logger.error('[course]: ' + e);
+      logger.error(`[course]: ${e}`);
       throw new InternalServerException();
     }
   }
