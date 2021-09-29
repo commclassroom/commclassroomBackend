@@ -27,14 +27,14 @@ router.delete('/:id', async (req, res) => {
 });
 
 /** to update review details */
-router.get('/:userid', async (req, res) => {
+router.get('/user/:userid', async (req, res) => {
   // req.body contains the User id from client
   const userReviews = await ReviewController.userReviews(req.params.userid);
   return res.json(userReviews);
 });
 
 /** to get reviews with specified course details */
-router.get('/:courseid', async (req, res) => {
+router.get('/course/:courseid', async (req, res) => {
   // req.body contains the course id from client
   const courseReviews = await ReviewController.courseReviews(req.body.courseid);
   return res.json(courseReviews);
