@@ -40,6 +40,5 @@ router.get('/course/:courseid', async (req, res) => {
   return res.json(courseReviews);
 });
 
-
 /** export the routes to be binded to application */
 module.exports = router;

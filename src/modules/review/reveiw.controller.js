@@ -14,7 +14,7 @@ class ReviewController {
   /**
    * each member function of controller is attached to each route
    */
-  
+
   static async createNewReview(newReviewObj) {
     try {
       logger.info('[review]: creating new review entry');
@@ -36,6 +36,7 @@ class ReviewController {
       throw new InternalServerException();
     }
   }
+
   static async removeReview(id) {
     try {
       logger.info('[review]: removing review');
@@ -45,6 +46,7 @@ class ReviewController {
       throw new InternalServerException();
     }
   }
+
   static async userReviews(id) {
     try {
       logger.info('[review]: listing user reviews');
@@ -55,12 +57,13 @@ class ReviewController {
       throw new InternalServerException();
     }
   }
+
   static async courseReviews(id) {
-    try{
+    try {
       logger.info('[review] : listing course reveiws');
       const CourseReviews = await ReviewService.getCourseReviews(id);
       return CourseReviews;
-    }catch(e){
+    } catch (e) {
       throw new InternalServerException();
     }
   }

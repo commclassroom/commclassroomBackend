@@ -10,11 +10,11 @@ const Review = require('./review.schema');
  */
 class ReviewService {
   /**
-   * Fetch all Review of a specified courser with id 
+   * Fetch all Review of a specified courser with id
    * @returns Array<Review> list of Reviews in the system of a course
    */
   static async getCourseReviews(id) {
-    const reviewList = await Review.find({course:id});
+    const reviewList = await Review.find({ course: id });
     return reviewList;
   }
 
@@ -27,9 +27,10 @@ class ReviewService {
     const newReview = await Review.create(reviewObj);
     return newReview;
   }
+
   /**
    * Update a Review document
-   * @param  updatedReviewObj 
+   * @param  updatedReviewObj
    * @returns review object which is updated
    */
   static async updateReview(updatedReviewObj) {
@@ -37,8 +38,8 @@ class ReviewService {
       updatedReviewObj._id,
       updatedReviewObj,
       {
-          new : true
-      }
+        new: true,
+      },
     );
 
     return updatedReview;
@@ -50,7 +51,7 @@ class ReviewService {
    */
 
   static async removeReview(id) {
-    let removedReview = await Review.deleteOne({ _id: id });
+    const removedReview = await Review.deleteOne({ _id: id });
     return removedReview;
   }
   /**
@@ -60,7 +61,7 @@ class ReviewService {
    */
 
   static async getReviewsByUserId(userId) {
-    const reviews = await Review.find({ author : userId });
+    const reviews = await Review.find({ author: userId });
     return reviews;
   }
 }

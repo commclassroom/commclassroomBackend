@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 /** bind all rooutes to application */
 app.use('/user', UserRoutes);
 app.use('/course', CourseRoutes);
-app.use('/review',ReviewRoutes);
+app.use('/review', ReviewRoutes);
 /** transform all errors into standard messages */
 app.use(HttpExceptionTransformer);
 
