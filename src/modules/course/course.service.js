@@ -86,7 +86,7 @@ class CourseService {
   }
 
    /**
-   * Search course by title (internal function)
+   * Search course by title (internal function)git l
    * @param {String} title - search for a course/courses which match with the title
    */
   static async searchCourseByTitle(title) {
