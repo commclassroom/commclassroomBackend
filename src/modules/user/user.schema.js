@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 require('mongoose-type-email');
+
+function siteOrUrlRequired() {
+  return this.site || this.url;
+}
 /**
  * Define the structure of User document here
  */
@@ -34,9 +38,11 @@ const userSchema = new Schema({
     {
       site: {
         type: String,
+        required: [siteOrUrlRequired, 'Site and Url both are required'],
       },
       url: {
         type: String,
+        required: [siteOrUrlRequired, 'Site and Url both are required'],
       },
     },
   ],
