@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 require('mongoose-type-email');
 
 function siteOrUrlRequired() {
+  //No ES6 arrow functions https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#No_separate_this
   return this.site || this.url;
 }
 /**
