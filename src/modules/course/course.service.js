@@ -86,7 +86,7 @@ class CourseService {
   }
 
    /**
-   * Search course by title
+   * Search course by title (internal function)
    * @param {String} title - search for a course/courses which match with the title
    */
   static async searchCourseByTitle(title) {
@@ -97,22 +97,8 @@ class CourseService {
     return filteredCourses;
   }
 
-  /**
-   * Search course by category
-   * @param {String} category - search for a course/courses which match with the queried category
-   */
-   static async searchCourseByCategory(category) {
-
-    const courses = await this.findAllCourses(); //fetch all courses
-    logger.info("courses");
-    const filteredCourses =courses.filter( (course) =>{
-      return course.category.includes(category) === true;
-    });
-    return filteredCourses;
-  }
-
  /**
-   * Search course by numberofenrolledstudents
+   * Search course by numberofenrolledstudents (Internal function)
    * @param {BigInteger} countofstudents - search for a course/courses having count of students that match with the number of students entered
    */
 
@@ -125,25 +111,6 @@ class CourseService {
     if(filteredCourses === null)
     return null;
     return filteredCourses;
-  }
-
-  static async filterCategoryfromTitle(category,coursesByTitle){
-    const filteredCourses = coursesByTitle.filter (course =>{
-      return course.category === category;
-    });
-    return filteredCourses;
-  }
-  static async filterCountfromTitle(numberOfStudents,coursesByTitle){
-    const courses = coursesByTitle.filter (course =>{
-      return course.students.length === numberOfStudents;
-    });
-    return courses;
-  }
-  static async filterCountFromCategory(numberOfStudents,coursesByCategory){
-     const courses =coursesByCategory.filter (course =>{
-      return course.students.length === numberOfStudents;
-    });
-    return courses;
   }
    /**
    * Fetch courses based on title category and count 
