@@ -35,7 +35,10 @@ class ReviewService {
   static async updateReview(updatedReviewObj) {
     const updatedReview = await Review.findByIdAndUpdate(
       updatedReviewObj._id,
-      updatedReviewObj
+      updatedReviewObj,
+      {
+          new : true
+      }
     );
 
     return updatedReview;
