@@ -47,7 +47,7 @@ class ReviewService {
    */
 
   static async removeReview(id) {
-    let removedReview = await Review.remove({ _id: id });
+    let removedReview = await Review.deleteOne({ _id: id });
     return removedReview;
   }
   /**
