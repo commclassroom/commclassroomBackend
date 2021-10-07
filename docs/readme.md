@@ -1,10 +1,11 @@
 # Development Guide
 
+
 # Entites 
-Entities are "things" that we see in the project. for example, user, course, instructor, review, etc are all entities. Ideally all entities get a collection in the database.
+Entities are "things" that we see in the project. For example - user, course, instructor, review, etc are all entities. Ideally all entities get a collection in the database.
  
 ## **User**
-user (or student in our case) is anyone who "uses" or logs into the system in order to view the content, and engage with it.
+User (or student in our case) is anyone who "uses" or logs into the system in order to view the content and engage with it.
 
 The following details are stored about the user:
 - Personal details
@@ -39,7 +40,7 @@ The following details are stored about the user:
 
 
 ## **Course**
-course is a sequential arrangement of **videos** on a similar context. Courses are just an abstraction of a collection of videos, so the schema is mainly metadata.
+Course is a sequential arrangement of **videos** on a similar context. Courses are just an abstraction of a collection of videos, so the schema is mainly metadata.
 
 The following details are as follows:
 - Course details
@@ -72,9 +73,8 @@ The following details are stored about a review
   - upvotes/found helpful `array<user.id>`
 
 
-
 # Modules
-modules are stored in the `src/modules/<module.name>` directory.
+Modules are stored in the `src/modules/<module.name>` directory.
 
 ## User Module
 User module deals with everything related to a user / student / profile on the application.
@@ -106,7 +106,7 @@ Course modules does everything related to course on the application
 
 
 ## Review Module
-review module deals with everything related to reviews of a course
+Review module deals with everything related to reviews of a course
 
 - Routes
   - to list all reviews by a user
@@ -114,7 +114,7 @@ review module deals with everything related to reviews of a course
   - to allow users to write a review for a course
   - to allow users to update their review for a course
   - to allow users to delete their review of a course
-  - to allow users (admins) to moderate the reviews, i.e. change their status etc
+  - to allow users (admins) to moderate the reviews, i.e. change their status etc.
 
 
 
