@@ -1,5 +1,5 @@
 const express = require('express');
-
+const mongoose = require("mongoose");
 const router = express.Router();
 
 /** load the service */
@@ -15,6 +15,13 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const course = await CourseController.getCourseById(req.params.id);
   return res.json(course);
+});
+
+/**to list all reviews of a course */
+router.get("/:id/reviews", async(req, res) => {
+  const course = await CourseController.getCourseById(req.params.id);
+  const reviews = course.toObject().reviews;
+  return res.json(reviews);
 });
 
 /**to add a new course */
