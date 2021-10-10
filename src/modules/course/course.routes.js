@@ -1,5 +1,5 @@
 const express = require('express');
-
+const { logger } = require('../../services/logger');
 const router = express.Router();
 
 /** load the service */
@@ -11,9 +11,20 @@ router.get('/', async (req, res) => {
   return res.json(courseList);
 });
 
+/** search for a course based on Title , category , countof enrolled students */
+
+router.get('/search', async (req,res) => {
+  const title = req.query.title;
+  const category = req.query.category;
+  const countofstudents = req.query.countofstudents;
+  const filteredCourses= await CourseController.searchCourse(title , category , parseInt(countofstudents));
+  return res.json(filteredCourses);
+});
+
 /**to get a course by id */
 router.get('/:id', async (req, res) => {
   const course = await CourseController.getCourseById(req.params.id);
+  console.log(req.params.id);
   return res.json(course);
 });
 

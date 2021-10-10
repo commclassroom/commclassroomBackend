@@ -95,6 +95,29 @@ class CourseController {
       throw new InternalServerException();
     }
   }
+
+  /**
+   * @param {String} title - title of the course
+   * @param {String} Category - Category of the course
+   * @param {BigInteger} countofstudents - number of students enrolled in the course
+   * */
+
+    static async searchCourse(title , category , countofstudents){
+      if(title === null && category === null && countofstudents === 0){
+        logger.info("searching for courses returned null since given parameters are empty");
+        return null;
+      }
+      try{         
+          logger.info("searching for courses having title: "+ title +" belonging to category: "+category +" having enrolled no of students as: "+countofstudents);
+          const courses = await CourseService.searchCourses(title , category ,countofstudents);
+        
+          return courses;
+      }
+      catch(e){
+        throw new InternalServerException();
+      }
+    }
+
 }
 
 module.exports = { CourseController };
