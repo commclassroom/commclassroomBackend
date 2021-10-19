@@ -11,25 +11,25 @@ router.get('/', async (req, res) => {
   return res.json(courseList);
 });
 
-/**to get a course by id */
+/** to get a course by id */
 router.get('/:id', async (req, res) => {
   const course = await CourseController.getCourseById(req.params.id);
   return res.json(course);
 });
 
-/**to add a new course */
+/** to add a new course */
 router.post('/new', async (req, res) => {
   const course = await CourseController.createCourse(req.body);
   return res.json(course).status(201);
 });
 
-/**update details of a course */
+/** update details of a course */
 router.put('/update/:id', async (req, res) => {
   const course = await CourseController.updateCourse(req.params.id, req.body);
   return res.json(course);
 });
 
-/**delete a course */
+/** delete a course */
 router.delete('/delete/:id', async (req, res) => {
   const course = await CourseController.deleteCourse(req.params.id);
   return res.json(course);
