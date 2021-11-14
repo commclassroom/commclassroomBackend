@@ -16,7 +16,7 @@ Install dependencies
 
 Run unit tests
 
-    npm test
+    npm run tests
 
 Start development server with hot reloading (open `http://127.0.0.1:27017/` and find your way through the directory listing)
 
